@@ -13,7 +13,7 @@ In order to be successful when working with prototype methods, you'll need to ha
 
 # Instructions
 
-In the [prototypes/index.js](https://github.com/turingschool-examples/jsFun/prototypes/index.js) file, you'll see several objects named after a collection of prompts that need to be solved. Each prompt is represented by a separate method on that object. 
+In the [prototypes/index.js](https://github.com/turingschool-examples/jsFun/prototypes/index.js) file, you'll see several objects named after a collection of prompts that need to be solved. Each prompt is represented by a separate method on that object.
 
 For example, the first object of prompts is called `turingPrompts` and coincides with the dataset at [prototypes/datasets/turing.js](https://github.com/turingschool-examples/jsFun/prototypes/datasets/turing.js). As you work through the methods on this object, it will help to switch your sublimeText layout to display 2 files at once - one for the dataset you're working with, and one for the prompts to be solved.
 
@@ -40,11 +40,15 @@ const { animals } = require('./datasets/farm');
 
 const farmPrompts = {
   totalFarmAnimals() {
+    return animals.reduce((acc, animal) =>{
+      acc += animal.count;
+      return acc
+    }, 0)
     // Return a single number that represents the
     // total amount of animals on the farm. e.g.
     // 50
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = '60';
     return result;
 
     // Annotation:
@@ -78,7 +82,7 @@ const farmPrompts = {
     // Because we are given an array, and want a single number back,
     // we will reach for the `reduce` method since it is the only one
     // that allows us to return a value of any data type. On each iteration
-    // of reduce, we will add our current animal's `count` value to the 
+    // of reduce, we will add our current animal's `count` value to the
     // accumulator which will be returned when the iteration is complete.
   }
 }

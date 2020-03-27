@@ -14,13 +14,17 @@ const context = {
 
     const ship = new SpaceProbe('voyager', 'classy');
 
-
     // What is the value of `this` when we call ship.fly()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    // const result = 'global window object';
+    // return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // we receive a global window object back, I believe, becuase we are trying to
+    // invoke a function that console log's "this" from outside of the constructor
+    // for that instance of a particular class.  if we had a method inside of the
+    // class that console logged "this", then perhaps it would console log the
+    // instance itself.
+
   },
 
   exerciseB() {
@@ -30,11 +34,14 @@ const context = {
     }
 
     // What is the value of `this` when we call fn()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    // const result = 'global window object';
+    // return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // the function is globally scoped, so the 'this' return of it is going
+    // to return the global window object and not the local variable 'value';
+    //If the variable value was globally scoped, I believe the function would
+    //then return the globally scoped value
   },
 
   exerciseC() {
@@ -49,7 +56,7 @@ const context = {
     el.addEventListener('click', car.getInfo);
 
     // What is the value of `this` when a user clicks on our element and car.getInfo() is triggered?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'el';
     return result;
 
     // Annotation:

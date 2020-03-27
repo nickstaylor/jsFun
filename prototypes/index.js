@@ -1,3 +1,4 @@
+/* eslint-disable */
 const { kitties } = require('./datasets/kitties');
 const { clubs } = require('./datasets/clubs');
 const { mods } = require('./datasets/mods');
@@ -13,35 +14,41 @@ const { constellations, stars } = require('./datasets/astronomy');
 const { weapons, characters } = require('./datasets/ultima');
 const { dinosaurs, humans, movies } = require('./datasets/dinosaurs');
 
-
-
-
-
-
 // SINGLE DATASETS
 // =================================================================
 
 // DATASET: kitties from ./datasets/kitties
 const kittyPrompts = {
   orangeKittyNames() {
-
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.filter(kitty => kitty.color === 'orange')
+      .map(kitty => kitty.name);
     return result;
-
     // Annotation:
-    // Write your annotation here as a comment
+    /*
+    I have an array of different kitty objects.  Each kitty object has
+    properties of color, age, and name.
+    I want to return an array of the names of the kitties that are orange.
+    First, I will use a filter prototype to get the kitty objects of the
+    kitties with an orange color.  I will then use a map prototype to return
+    just the kitty names of those particular kitties.
+    */
   },
 
   sortByAge() {
     // Sort the kitties by their age
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.sort((a, b) =>{
+      return b.age - a.age;
+    });
     return result;
-
     // Annotation:
-    // Write your annotation here as a comment
+    /*What I have:  An array of kitty objects, where each object has an age
+    property.
+    What I need:  And sorted array of the same length with the kitties by age
+    What to use:  I think I will use the sort prototype as it returns an array
+    of either ascending or descending order.
+    */
   },
 
   growUp() {
@@ -58,14 +65,25 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.map(kitty => {
+      kitty.age += 2;
+      return kitty;
+    }).sort((a, b) =>{
+      return b.age - a.age;});
     return result;
   }
+
+  //Annotation
+  /*
+  what I have:  I have an array of kitty objects
+  what I need:  I need an array of kitty objects but with each kitty
+  age incremented by 2 years.
+  what to use:  I believe .map will be good here because it returns an
+  array of the same length and we can change some of the properties
+  -end note:  this was tougher than I thought as I had to add the sort
+  prototype method to the end.
+  */
 };
-
-
-
-
 
 
 // ---------------------------------------------------------------------------
@@ -90,17 +108,22 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = clubs.reduce((acc, club) => {
+   club.members.forEach(member=> {
+     if (!acc[member]){
+        acc[member] = []
+        }
+    acc[member].push(club.club)
+      });
+
+    return acc
+  }, {})
     return result;
 
     // Annotation:
     // Write your annotation here as a comment
   }
 };
-
-
-
-
 
 
 // ---------------------------------------------------------------------------
@@ -126,7 +149,10 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = mods.map(mod => {
+      return ({mod: mod.mod,
+        studentsPerInstructor: (mod.students/mod.instructors)});
+    });
     return result;
 
     // Annotation:
