@@ -15,8 +15,8 @@ const context = {
     const ship = new SpaceProbe('voyager', 'classy');
 
     // What is the value of `this` when we call ship.fly()?
-    // const result = 'global window object';
-    // return result;
+    const result = 'global window object';
+    return result;
 
     // Annotation:
     // we receive a global window object back, I believe, becuase we are trying to
@@ -28,20 +28,22 @@ const context = {
   },
 
   exerciseB() {
+    console.log(this)
+
     function fn() {
       const value = 2;
       return this.value;
     }
 
     // What is the value of `this` when we call fn()?
-    // const result = 'global window object';
-    // return result;
+    const result = 'global window object';
+    return result;
 
     // Annotation:
     // the function is globally scoped, so the 'this' return of it is going
     // to return the global window object and not the local variable 'value';
-    //If the variable value was globally scoped, I believe the function would
-    //then return the globally scoped value
+    // If the variable value was globally scoped, I believe the function would
+    // then return the globally scoped value
   },
 
   exerciseC() {

@@ -187,11 +187,18 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((flavorList,cake)=>{
+        let newFlavor = {
+        flavor: cake.cakeFlavor,
+        inStock: cake.inStock
+        }
+        flavorList.push(newFlavor)
+      return flavorList;
+    }, [])
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // we need to return an array of objects
   },
 
   onlyInStock() {
@@ -343,7 +350,13 @@ const bookPrompts = {
     //   'Catch-22', 'Treasure Island']
 
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = books.reduce((bookTitles, book)=>{
+      book.genre !== 'Horror' && book.genre !== 'True Crime' &&
+      bookTitles.push(book.title)
+      // return bookTitles
+
+    return bookTitles
+  }, []);
     return result;
 
     // Annotation:
@@ -358,7 +371,10 @@ const bookPrompts = {
     //  { title: 'Life of Pi', year: 2001 },
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = books.reduce((allBooks, book)=>{
+      book.published > 1989 && allBooks.push({title: book.title, year: book.published})
+      return allBooks
+    }, []);
     return result;
 
     // Annotation:
