@@ -156,7 +156,7 @@ describe("PROTOTYPES", () => {
         toppings: ["smoked sea salt", "crystallized ginger", "berries"],
         inStock: 21
       }])
-    }), it("totalInventory", () => {
+    }), it.only("totalInventory", () => {
       const e = cakePrompts.totalInventory();
       expect(e).to.deep.equal(59)
     }), it("allToppings", () => {
@@ -256,7 +256,7 @@ describe("PROTOTYPES", () => {
         'Catch-22',
         'Treasure Island'])
     }),
-    it.only("getNewBooks", () => {
+    it("getNewBooks", () => {
       const e = bookPrompts.getNewBooks();
       expect(e).to.deep.equal([{
         title: 'Harry Potter and the Sorcerer\'s Stone', year: 1997 },

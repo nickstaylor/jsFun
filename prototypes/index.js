@@ -222,7 +222,10 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, cake)=>{
+     (cake.inStock > 0) && acc.push(cake)
+     return acc
+    },[])  ;
     return result;
 
     // Annotation:
@@ -233,7 +236,10 @@ const cakePrompts = {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((total, cake)=>{
+    total += cake.inStock
+  return total
+  }, 0);
     return result;
 
     // Annotation:
@@ -397,7 +403,7 @@ const weatherPrompts = {
     // return an array of all the average temperatures. Eg:
     // [ 40, 40, 44.5, 43.5, 57, 35, 65.5, 62, 14, 46.5 ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = weatherPrompts.reduce();
     return result;
 
     // Annotation:
