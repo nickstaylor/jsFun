@@ -28,7 +28,7 @@ const kittyPrompts = {
     // Annotation:
     /*
     I have an array of different kitty objects.  Each kitty object has
-    properties of color, age, and name.
+    properties of color, age, and name.;
     I want to return an array of the names of the kitties that are orange.
     First, I will use a filter prototype to get the kitty objects of the
     kitties with an orange color.  I will then use a map prototype to return
@@ -251,7 +251,14 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((toppings, cake)=>{
+      cake.toppings.forEach(topping =>{
+        if(!toppings.includes(topping)){
+          toppings.push(topping)
+        }
+    })
+    return toppings
+    }, []);
     return result;
 
     // Annotation:
@@ -269,7 +276,16 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((list, cake)=>{
+      cake.toppings.forEach(topping=>{
+        if(!list[topping]){
+          list[topping] = 0
+        }
+          list[topping]++
+      })
+
+      return list
+    }, {});
     return result;
 
     // Annotation:
@@ -304,7 +320,10 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.reduce((acc, classroom) => {
+       classroom.program === "FE" && acc.push(classroom)
+       return acc
+    },[]);
     return result;
 
     // Annotation:
