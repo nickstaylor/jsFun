@@ -338,17 +338,28 @@ const classPrompts = {
     //   beCapacity: 96
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.reduce((acc, classroom)=>{
+        acc['feCapacity'] = 0
+        acc['beCapacity'] = 0
+        classrooms.forEach(classroom=>{if (classroom.program === 'FE'){
+          acc['feCapacity'] += classroom.capacity
+        } else {
+          acc['beCapacity'] += classroom.capacity
+        }
+      })
+        return acc
+    }, {});
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // I am not sure why I had to put the forEach in here and why
+    //it didn't keep adding up the numbers through each loop
   },
 
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.sort((a, b)=> (a.capacity - b.capacity));
     return result;
 
     // Annotation:
