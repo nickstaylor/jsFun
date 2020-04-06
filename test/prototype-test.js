@@ -201,7 +201,7 @@ describe("PROTOTYPES", () => {
         feCapacity: 110,
         beCapacity: 96
       })
-    }), it.only("sortByCapacity", () => {
+    }), it("sortByCapacity", () => {
       const e = classPrompts.sortByCapacity();
       expect(e).to.deep.equal([{
         roomLetter: "H",
@@ -312,7 +312,7 @@ describe("PROTOTYPES", () => {
         'rock climbing'
       ])
     }),
-    it("getParkInEachState", () => {
+    it.only("getParkInEachState", () => {
       const e = nationalParksPrompts.getParkInEachState();
       expect(e).to.deep.equal(
         [

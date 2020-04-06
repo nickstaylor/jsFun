@@ -228,7 +228,8 @@ const scope = {
 
     // Log D: fruit
 
-    // const result = mango, mango, apple, apple;
+    const result = [{A: 'reference error'},
+    {B:'mango'},{C: 'mango'}, {D:'apple'}]
     return result;
 
     // Annotation:

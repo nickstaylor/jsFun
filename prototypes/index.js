@@ -1,13 +1,13 @@
 /* eslint-disable */
-const { kitties } = require('./datasets/kitties');
-const { clubs } = require('./datasets/clubs');
-const { mods } = require('./datasets/mods');
-const { cakes } = require('./datasets/cakes');
-const { classrooms } = require('./datasets/classrooms');
+const { kitties } = require('./datasets/kitties'); //done
+const { clubs } = require('./datasets/clubs'); //done
+const { mods } = require('./datasets/mods'); //done
+const { cakes } = require('./datasets/cakes'); //done
+const { classrooms } = require('./datasets/classrooms'); //done
 const { breweries } = require('./datasets/breweries');
 const { nationalParks } = require('./datasets/nationalParks');
-const { books } = require('./datasets/books');
-const { weather } = require('./datasets/weather');
+const { books } = require('./datasets/books'); //done
+const { weather } = require('./datasets/weather'); //done
 const { instructors, cohorts } = require('./datasets/turing');
 const { bosses, sidekicks } = require('./datasets/bosses');
 const { constellations, stars } = require('./datasets/astronomy');
@@ -433,7 +433,9 @@ const weatherPrompts = {
     // return an array of all the average temperatures. Eg:
     // [ 40, 40, 44.5, 43.5, 57, 35, 65.5, 62, 14, 46.5 ]
 
-    const result = weatherPrompts.reduce();
+    const result = weather.map(city=>{
+    return (city.temperature.high + city.temperature.low) / 2
+  });
     return result;
 
     // Annotation:
@@ -447,7 +449,12 @@ const weatherPrompts = {
     // 'New Orleans, Louisiana is sunny.',
     // 'Raleigh, North Carolina is mostly sunny.' ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = weather.reduce((acc, city)=>{
+      if (city.type.includes('sunny')){
+        acc.push(`${city.location} is ${city.type}.`)
+      }
+      return acc
+    }, []);
     return result;
 
     // Annotation:
@@ -463,10 +470,14 @@ const weatherPrompts = {
     //   temperature: { high: 49, low: 38 }
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    const result = weather.sort((a, b)=>{
+      return b.humidity - a.humidity
+      // return result[0]
+    });
+    return result[0];
 
     // Annotation:
+    //I had this correct but needed to add the return in the function
     // Write your annotation here as a comment
 
   }
@@ -490,7 +501,14 @@ const nationalParksPrompts = {
     //   parksVisited: ["Rocky Mountain", "Acadia", "Zion"]
     //}
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = nationalParks.reduce((acc, park)=>{
+      if (park.visited === false){
+        acc.parksToVisit.push(park.name)
+      } else {
+        acc.parksVisited.push(park.name)
+      }
+      return acc
+    }, {parksToVisit: [], parksVisited: []});
     return result;
 
     // Annotation:
@@ -507,7 +525,10 @@ const nationalParksPrompts = {
     // { Florida: 'Everglades' } ]
 
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = nationalParks.reduce((acc, park)=>{
+      acc.push({[park.location]: park.name})
+    return acc
+  }, []);
     return result;
 
     // Annotation:
