@@ -4,7 +4,7 @@ const { clubs } = require('./datasets/clubs'); //done
 const { mods } = require('./datasets/mods'); //done
 const { cakes } = require('./datasets/cakes'); //done
 const { classrooms } = require('./datasets/classrooms'); //done
-const { breweries } = require('./datasets/breweries');
+const { breweries } = require('./datasets/breweries'); //done
 const { nationalParks } = require('./datasets/nationalParks');
 const { books } = require('./datasets/books'); //done
 const { weather } = require('./datasets/weather'); //done
@@ -229,7 +229,7 @@ const cakePrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+      // Write your annotation here as a comment;
   },
 
   totalInventory() {
@@ -679,7 +679,15 @@ const turingPrompts = {
     //  { name: 'Robbie', studentCount: 18 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.reduce((acc, instructor)=>{
+      cohorts.forEach(cohort=>{
+        if (instructor.module === cohort.module){
+          acc.push({name: instructor.name, studentCount: cohort.studentCount})
+        }
+      })
+
+      return acc
+    }, []);
     return result;
 
     // Annotation:
@@ -693,7 +701,16 @@ const turingPrompts = {
     // cohort1804: 10.5
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cohorts.reduce((acc, cohort)=>{
+      let teachers = 0
+      instructors.forEach(instructor=>{
+        if (cohort.module === instructor.module){
+            teachers++
+        }
+      })
+      acc['cohort'+ cohort.cohort] = (cohort.studentCount/teachers)
+      return acc
+    }, {});
     return result;
 
     // Annotation:
@@ -715,7 +732,18 @@ const turingPrompts = {
     //     Will: [1, 2, 3, 4]
     //   }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.reduce((acc, instructor)=>{
+      acc[instructor.name] = []
+      cohorts.forEach(cohort=>{
+        cohort.curriculum.forEach(skill=>{
+          if (instructor.teaches.includes(skill)){
+            if(!acc[instructor.name].includes(cohort.module))
+            acc[instructor.name].push(cohort.module)
+          }
+        })
+      })
+      return acc
+    }, {});
     return result;
 
     // Annotation:
