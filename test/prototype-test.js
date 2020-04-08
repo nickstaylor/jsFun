@@ -312,7 +312,7 @@ describe("PROTOTYPES", () => {
         'rock climbing'
       ])
     }),
-    it.only("getParkInEachState", () => {
+    it("getParkInEachState", () => {
       const e = nationalParksPrompts.getParkInEachState();
       expect(e).to.deep.equal(
         [
@@ -347,7 +347,7 @@ describe("PROTOTYPES", () => {
         name: "Platt Park Brewing Co.",
         beerCount: 7
       }])
-    }), it("findHighestAbvBeer", () => {
+    }), it.only("findHighestAbvBeer", () => {
       const e = breweryPrompts.findHighestAbvBeer();
       expect(e).to.deep.equal({
         name: "Barrel Aged Nature's Sweater",
