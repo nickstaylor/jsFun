@@ -808,10 +808,20 @@ const bossPrompts = {
     //   { bossName: 'Scar', sidekickLoyalty: 16 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = Object.values(bosses).reduce((acc, boss)=>{
+    let sidekickSum = 0
+    sidekicks.forEach(sidekick=>{
+      if (sidekick.boss === boss.name){
+        sidekickSum += sidekick.loyaltyToBoss
+      }
+    })
+    acc.push({bossName: boss.name, sidekickLoyalty: sidekickSum})
+  return acc
+  }, [])
     return result;
 
     // Annotation:
+    //Object.values brings an array of objects to iterate over
     // Write your annotation here as a comment
   }
 };
@@ -850,10 +860,30 @@ const astronomyPrompts = {
     //     color: 'red' }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = Object.values(constellations).reduce((matchingStars, constellation) => {
+      constellation.stars.forEach(constellationStar => {
+        stars.forEach(star => {
+          if(star.name === constellationStar) {
+            matchingStars.push(star)
+          }
+        })
+      })
+
+      return matchingStars.reverse()
+    }, []);
     return result;
 
     // Annotation:
+    //  1) look at all of the constellations and return
+    //each constellation's star information.  We need
+    //more than just the star name, so we will need to access
+    //the stars array for that info.
+    // 2) what do I need:  I need to return an array
+    // of objects, where each object contains the star
+    //information
+
+    // 3) iterate through the stars, perhaps with a
+    //reduce
     // Write your annotation here as a comment
   },
 
@@ -868,7 +898,15 @@ const astronomyPrompts = {
     //   red: [{obj}]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = stars.reduce((colorStars, star)=>{
+      if (!colorStars[star.color]){
+        colorStars[star.color] = []
+      }
+        colorStars[star.color].push(star)
+        //this is saying that if the star's color is the same
+        //as the object key, then push the entire star in there
+    return colorStars
+  }, {});
     return result;
 
     // Annotation:
@@ -890,8 +928,14 @@ const astronomyPrompts = {
     //    "The Little Dipper" ]
 
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    const result = stars.filter(star=>{
+  if(star.constellation !== ''){
+   return star.constellation}
+  })
+    return result.sort((a, b)=>
+      (a.visualMagnitude > b.visualMagnitude) ? 1 : -1).map(star=>{
+        return star.constellation
+      });
 
     // Annotation:
     // Write your annotation here as a comment
@@ -921,7 +965,17 @@ const ultimaPrompts = {
     // Return the sum of the amount of damage for all the weapons that our characters can use
     // Answer => 113
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = Object.entries(weapons).reduce((total, weapon)=>{
+      characters.forEach(character=>{
+        character.weapons.forEach(charWeapon=>{
+          if (charWeapon === weapon[0]){
+            total += weapon[1].damage
+          }
+        })
+      })
+
+    return total
+  },0);
     return result;
 
     // Annotation:
@@ -933,7 +987,15 @@ const ultimaPrompts = {
     // Return the sum damage and total range for each character as an object.
     // ex: [ { Avatar: { damage: 27, range: 24 }, { Iolo: {...}, ...}
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = characters.reduce((acc, char)=>{
+        obj = {[char.name]: {damage: 0, range: 0}}
+          char.weapons.forEach(weapon=>{
+              obj[char.name].damage += weapons[weapon].damage
+              obj[char.name].range += weapons[weapon].range
+          })
+          acc.push(obj)
+        return acc
+      }, []);
     return result;
 
     // Annotation:
@@ -969,8 +1031,19 @@ const dinosaurPrompts = {
     //   'Jurassic World': 11,
     //   'Jurassic World: Fallen Kingdom': 18
     // }
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let dinosaurEntries = Object.entries(dinosaurs)
+    const result = movies.reduce((acc, movie)=>{
+    acc[movie.title] = 0
+      movie.dinos.forEach(dino=>{
+        dinosaurEntries.forEach(entry=>{
+        if (dino === entry[0]){
+        if (entry[1].isAwesome === true){
+        acc[movie.title]++}
+        }
+        })
+      })
+  return acc
+  }, {});
     return result;
 
     // Annotation:

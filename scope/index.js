@@ -131,7 +131,7 @@ const scope = {
 
     // Log D: greeting
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{A: 'hi'}, {B: 'welcome'}, {C: 'welcome'}, {D: 'howdy'}];
     return result;
 
     // Annotation:
@@ -163,7 +163,7 @@ const scope = {
 
     // Log D: name
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{C: 'Brittany'}, {A: 'Nathaniel'}, {B: 'Nathaniel'}, {D: 'Brittany'}];
     return result;
 
     // Annotation:
@@ -198,10 +198,11 @@ const scope = {
 
     // Log E: dog
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{A: 'Spot'}, {B: 'Spot'}, {C: 'Biscuit'}, {D: 'Biscuit'}, {E: 'Biscuit'}];
     return result;
 
     // Annotation:
+    //still confused on why last one is Biscuit and not Spot
     // Write your annotation here as a comment
   },
 
@@ -357,10 +358,14 @@ const scope = {
     // Log E: sandwich
     // Log F: amandaBynes
 
-    // const result = [
-    //   {A: 'ketchup sandwich'},
-    //
-    // ];
+    const result = [
+      {A: 'ketchup sandwich'}, {D: 'gouda'},
+       {B: undefined},
+        {C: 'not a mediocre sandwich'},
+         {E: 'not a mediocre sandwich'},
+         {F: 'National Treasure'}
+
+    ];
     return result;
 
     // Annotation:
@@ -381,7 +386,7 @@ const scope = {
 
     // Log B: num
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{A: 7}, {B: 7}];
     return result;
 
     // Annotation:
@@ -413,7 +418,7 @@ const scope = {
 
     // Log C: grade
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{A: 95}, {B: 90}, {C: 90}];
     return result;
 
     // Annotation:
@@ -439,10 +444,11 @@ const scope = {
 
     // Log D: num
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{A: 5}, {B: 6}, {C:"referece effor"}, {D: 6}];
     return result;
 
     // Annotation:
+    //why does this throw a reference error
     // Write your annotation here as a comment
   },
 

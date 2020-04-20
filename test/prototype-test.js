@@ -408,7 +408,7 @@ describe("PROTOTYPES", () => {
         Christie: [1, 2, 3, 4],
         Will: [1, 2, 3, 4]
       })
-    }), it.only("curriculumPerTeacher", () => {
+    }), it("curriculumPerTeacher", () => {
       const e = turingPrompts.curriculumPerTeacher();
       expect(e).to.deep.equal({
         html: ["Travis", "Louisa"],
@@ -536,7 +536,7 @@ describe("PROTOTYPES", () => {
     it("totalDamage", () => {
       const e = ultimaPrompts.totalDamage();
       expect(e).to.deep.equal(113)
-    }), it("charactersByTotal", () => {
+    }), it.only("charactersByTotal", () => {
       const e = ultimaPrompts.charactersByTotal();
       expect(e).to.deep.equal([{
         Avatar: {
