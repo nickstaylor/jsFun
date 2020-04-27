@@ -1109,7 +1109,28 @@ const dinosaurPrompts = {
       }]
     */
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+
+    let castedActors = []
+      movies.forEach(movie=>{
+        movie.cast.forEach(person=>{
+          if (!castedActors.includes(person)){
+            castedActors.push(person)
+          }
+        })
+      })
+  let humanEntries = Object.entries(humans)
+    castedActors.forEach(actor=>{
+      let uncasted = humanEntries.forEach(human=>{
+          if (human[0] === actor){
+            const value = humanEntries.indexOf(human)
+            humanEntries.splice(value, 1)
+          }
+      })
+    })
+    const result = humanEntries.map(entry=>{
+      return ({name: entry[0], nationality: entry[1].nationality,
+         imdbStarMeterRating: entry[1].imdbStarMeterRating})
+    }).sort((a, b)=> a.nationality > b.nationality ? 1 : -1);
     return result;
 
     // Annotation:

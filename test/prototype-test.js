@@ -587,7 +587,7 @@ describe("PROTOTYPES", () => {
           'Jurassic World: Fallen Kingdom': 59
         }
       })
-    }), it("uncastActors", () => {
+    }), it.only("uncastActors", () => {
       const e = dinosaurPrompts.uncastActors();
       expect(e).to.deep.equal([{
         name: 'Justin Duncan',
