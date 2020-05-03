@@ -570,7 +570,7 @@ describe("PROTOTYPES", () => {
         'Jurassic World': 11,
         'Jurassic World: Fallen Kingdom': 18
       })
-    }), it("averageAgePerMovie", () => {
+    }), it.only("averageAgePerMovie", () => {
       const e = dinosaurPrompts.averageAgePerMovie();
       expect(e).to.deep.equal({
         'Steven Spielberg': {
@@ -587,7 +587,7 @@ describe("PROTOTYPES", () => {
           'Jurassic World: Fallen Kingdom': 59
         }
       })
-    }), it.only("uncastActors", () => {
+    }), it("uncastActors", () => {
       const e = dinosaurPrompts.uncastActors();
       expect(e).to.deep.equal([{
         name: 'Justin Duncan',

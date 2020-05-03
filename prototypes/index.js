@@ -1076,7 +1076,23 @@ const dinosaurPrompts = {
       }
     */
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = movies.reduce((acc, movie)=>{
+    if (acc[movie.director]){
+      acc[movie.director] + (movie.title = [movie.title])   } else {
+      acc[movie.director] = {[movie.title]: 0}
+      }
+          let sum = 0
+        movie.cast.forEach(castMember=>{
+          Object.entries(humans).forEach(human=>{
+            if (castMember === human[0]){
+            let age = movie.yearReleased - human[1].yearBorn
+            sum += age
+            }
+          })
+          acc[movie.director][movie.title]= Math.floor(sum/movie.cast.length)
+        })
+
+    return acc}, {});
     return result;
 
     // Annotation:
@@ -1153,7 +1169,27 @@ const dinosaurPrompts = {
       { name: 'Bryce Dallas Howard', ages: [ 34, 37 ] } ]
     */
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let cast = []
+    movies.forEach(movie=>{
+     movie.cast.forEach(actor=>{
+       if (!cast.includes(actor)){
+       cast.push(actor)
+       }
+     })
+    })
+
+    const result = cast.map(actor=>{
+      let obj = {name: actor, ages: []}
+      movies.forEach(movie=>{
+        movie.cast.forEach(person=> {
+          if (actor === person){
+            let age = movie.yearReleased - humans[actor].yearBorn
+            obj.ages.push(age)
+          }
+        })
+      })
+      return obj
+    });
     return result;
 
     // Annotation:
